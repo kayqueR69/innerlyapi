@@ -1,0 +1,68 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Ambientes virtuais
+il_env/
+venv/
+env/
+ENV/
+.venv/
+.env/
+
+# Arquivos de configuração de ambiente
+*.env
+*.env.*
+
+# SQLite database
+db.sqlite3
+*.sqlite3
+
+# Arquivos de log
+*.log
+
+# Django stuff:
+media/
+staticfiles/
+
+# Migrations (se quiser ignorar todas — opcional)
+# */migrations/
+# */migrations/*.py
+# !*/migrations/__init__.py
+
+# VS Code
+.vscode/
+
+# Pycharm
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Arquivos de cache
+.cache/
+*.tmp
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# pytest
+.pytest_cache/
+
+# Celery beat schedule file
+celerybeat-schedule
