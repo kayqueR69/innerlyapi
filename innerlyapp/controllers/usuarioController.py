@@ -12,6 +12,7 @@ def getUsuarios(request):
 
     return JsonResponse(usuarios, safe=False)
 
+@api_view(['GET'])
 def getUsuario(request, idUsuario):
 
     try:
