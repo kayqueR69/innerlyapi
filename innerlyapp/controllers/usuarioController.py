@@ -3,6 +3,7 @@ from innerlyapp.models import Usuario
 from django.http import JsonResponse
 import json
 from django.forms.models import model_to_dict
+from innerlyapp.controllers.usuarioFunctions import *
 
 @api_view(['GET'])
 def getUsuarios(request):
@@ -42,5 +43,16 @@ def createUsuario(request):
 @api_view(['PUT'])
 def updateUsuario(request):
 
-    dadosUsuario = json.loads(request.body)
-    return JsonResponse({'teste' : 'rota funcionando', 'dados' : dadosUsuario})
+    try:
+
+        dadosUsuario = json.loads(request.body)
+
+        modelUsuario = model_to_dict(Usuario.objects.get(id=dadosUsuario['id']))
+        modelUsuario = preencheUsuario(dadosUsuario, modelUsuario)
+
+        Usuario.objects.filter(id=modelUsuario['id']).update(**modelUsuario)
+
+    except Exception as e:
+        return JsonResponse({'mensagem' : 'erro ao alterar usuario'})
+    
+    return JsonResponse({'mensagem' : 'usuario alterado com sucesso'})
