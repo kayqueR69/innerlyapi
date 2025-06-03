@@ -6,7 +6,7 @@ class Usuario(models.Model):
 
     nome = models.CharField(max_length=255)
     dataNascimento = models.DateField()
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     senha = models.CharField(max_length=255)
     contato = models.CharField(max_length=255, null=True, blank=True)
 

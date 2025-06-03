@@ -57,3 +57,12 @@ def updateUsuario(request):
         return JsonResponse({'mensagem' : 'erro ao alterar usuario'})
     
     return JsonResponse({'mensagem' : 'usuario alterado com sucesso'})
+
+@api_view(['POST'])
+def loginUsuario(request): # em desenvolvimento
+
+    dadosUsuario = json.loads(request.body)
+    
+
+
+    return JsonResponse({'mensagem' : 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'})
