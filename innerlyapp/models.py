@@ -16,7 +16,7 @@ class Usuario(models.Model):
 class Registro(models.Model):
 
     idUsuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
-    dataCriacao = models.DateField(unique=True)
+    dataCriacao = models.DateField()
     nivelHumor = models.SmallIntegerField()
     anotacao = models.TextField()
     dataString = models.CharField(max_length=100, blank=True)
@@ -31,7 +31,7 @@ class Registro(models.Model):
         valueNivel = ['muito mal', 'mal', 'mais ou menos', 'bem', 'muito bem']
 
         return {
-            'nomeusuario' : Usuario.objects.get(id=self.idUsuario).nome,
+            'nomeusuario' : self.idUsuario.nome,
             'data' : self.dataString,
             'valuehumor' : self.nivelHumor,
             'stringhumor' : valueNivel[self.nivelHumor -1],
@@ -39,4 +39,4 @@ class Registro(models.Model):
         }
 
     def __str__(self):
-        return f'{self.dataString} - detalhes'
+        return f'{self.dataString} - {self.idUsuario.nome} - detalhes'
