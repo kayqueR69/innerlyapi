@@ -12,3 +12,30 @@ class Usuario(models.Model):
 
     def __str__(self):
         return self.nome
+    
+class Registro(models.Model):
+
+    idUsuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    dataCriacao = models.DateField(unique=True)
+    nivelHumor = models.SmallIntegerField()
+    anotacao = models.TextField()
+    dataString = models.CharField(max_length=100, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.dataString:
+            self.dataString = self.dataCriacao.strftime("%d/%m/%Y")
+        super().save(*args, **kwargs)
+
+    def details(self):
+
+        valueNivel = ['muito mal', 'mal', 'mais ou menos', 'bem', 'muito bem']
+
+        return {
+            'nomeusuario' : Usuario.objects.get(id=self.idUsuario).nome,
+            'data' : self.dataString,
+            'valuehumor' : valueNivel[self.nivelHumor -1],
+            'anotacao' : self.anotacao
+        }
+
+    def __str__(self):
+        return f'{self.dataString} - detalhes'
