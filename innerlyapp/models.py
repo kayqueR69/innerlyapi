@@ -26,14 +26,15 @@ class Registro(models.Model):
             self.dataString = self.dataCriacao.strftime("%d/%m/%Y")
         super().save(*args, **kwargs)
 
-    def details(self):
+    def toString(self):
 
         valueNivel = ['muito mal', 'mal', 'mais ou menos', 'bem', 'muito bem']
 
         return {
             'nomeusuario' : Usuario.objects.get(id=self.idUsuario).nome,
             'data' : self.dataString,
-            'valuehumor' : valueNivel[self.nivelHumor -1],
+            'valuehumor' : self.nivelHumor,
+            'stringhumor' : valueNivel[self.nivelHumor -1],
             'anotacao' : self.anotacao
         }
 
